@@ -1,0 +1,9 @@
+result
+result-*
+
+*.mp4
+*.mp3
+*.wav
+
+**/media/
+**/tmp/
