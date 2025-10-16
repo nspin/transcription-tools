@@ -1,16 +1,43 @@
 { lib
 , pkgs
 , mkShell
+, makeFontsConf
 
-, toolDeps
-, toolEnv
+, ffmpeg
+, sox-with-mp3
+, yt-dlp
+, python3Packages
+, gnumake
+
+, freefont_ttf
+
+, vlc
+, audacity
+, blender
+
+, ttTransform
+, ttMpv
 }:
 
-mkShell (toolEnv // {
-  nativeBuildInputs = toolDeps ++ (with pkgs; [
+mkShell {
+  nativeBuildInputs = [
+    gnumake
+    ffmpeg
+    sox-with-mp3
+    yt-dlp
+    python3Packages.demucs
+    python3Packages.python
+
     vlc
-    mpv
     audacity
     blender
-  ]);
-})
+
+    ttTransform
+    ttMpv
+  ];
+  FONTCONFIG_FILE = makeFontsConf {
+    fontDirectories = [
+      freefont_ttf
+    ];
+  };
+}

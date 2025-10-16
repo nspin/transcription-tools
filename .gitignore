@@ -7,5 +7,4 @@ result-*
 *.mp3
 *.wav
 
-**/media/
 **/tmp/

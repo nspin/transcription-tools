@@ -8,35 +8,15 @@ let
     ];
   };
 
-  toolDeps = with pkgs; [
-    ffmpeg
-    sox-with-mp3
-    yt-dlp
-    python3Packages.demucs
-    python3Packages.python
-    gnumake
-  ];
-
-  toolEnv = with pkgs; {
-    FONTCONFIG_FILE = makeFontsConf {
-      fontDirectories = [
-        freefont_ttf
-      ];
-    };
-  };
-
 in rec {
 
-  inherit
-    pkgs
-  ;
+  inherit pkgs;
 
-  tool = pkgs.callPackage ./tool.nix {
-    inherit toolDeps toolEnv;
-  };
+  shell = pkgs.callPackage ./shell.nix {};
 
-  shell = pkgs.callPackage ./shell.nix {
-    inherit toolDeps toolEnv;
-  };
+  # abbreviations
+  tt = pkgs.transcriptionTools;
+  t = pkgs.ttTransform;
+  m = pkgs.ttMpv;
 
 }

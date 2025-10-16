@@ -5,10 +5,7 @@ import os
 import subprocess
 from pathlib import Path
 
-
-# TODO
-MAKEFILE_ENV = '__FOO_MAKEFILE'
-
+MAKEFILE_ENV = '__TT_TRANSFORM_MAKEFILE'
 
 def main():
     parser = argparse.ArgumentParser()
