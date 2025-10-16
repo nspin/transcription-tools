@@ -1,4 +1,5 @@
 let
+
   nixpkgsFn = import ./nixpkgs.nix;
 
   pkgs = nixpkgsFn {
@@ -25,6 +26,7 @@ let
   };
 
 in rec {
+
   inherit
     pkgs
   ;
@@ -36,4 +38,5 @@ in rec {
   shell = pkgs.callPackage ./shell.nix {
     inherit toolDeps toolEnv;
   };
+
 }

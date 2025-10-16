@@ -4,6 +4,8 @@ ISOLATE ?= 0
 SHIFT ?=
 BASE ?= x
 
+YT_DLP_FLAGS ?=
+
 base := $(BASE)
 
 title_file := $(base).txt
@@ -21,7 +23,9 @@ endif
 half_speed_suffix := -half-speed
 quarter_speed_suffix := -quarter-speed
 
-v := .webm
+v_format := mkv
+
+v := .$(v_format)
 a := .wav
 
 or_empty = $(if $(filter _,$(1)),,$(1))
@@ -52,10 +56,11 @@ $(base)$(v):
 else ifneq ($(URL),)
 
 $(title_file):
-	yt-dlp --print '%(title)s [%(id)s]' $(URL) > $@
+	yt-dlp --print '%(title)s [%(id)s]' $(URL) > $@.part
+	mv $@.part $@
 
 $(base)$(v):
-	yt-dlp -o $(base) $(URL)
+	yt-dlp --remux-video $(v_format) $(YT_DLP_FLAGS) -o $(base) $(URL)
 	@stat $@
 
 endif

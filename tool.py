@@ -20,6 +20,7 @@ def main():
     parser.add_argument('-i', '--isolate', action='store_true')
     parser.add_argument('-s', '--shift', type=int)
     parser.add_argument('-b', '--base')
+    parser.add_argument('--yt-dlp-flags', nargs='*')
     args = parser.parse_args()
     run(args)
 
@@ -35,6 +36,8 @@ def run(args):
 
     mk_args = []
 
+    assert (args.file is None) ^ (args.url is None)
+
     if args.file is not None:
         mk_args.append('FILE={}'.format(args.file.absolute()))
 
@@ -49,6 +52,9 @@ def run(args):
 
     if args.base is not None:
         mk_args.append('BASE={}'.format(args.base))
+
+    if args.yt_dlp_flags is not None:
+        mk_args.append('YT_DLP_FLAGS={}'.format(' '.join(args.yt_dlp_flags)))
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
