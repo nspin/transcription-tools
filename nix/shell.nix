@@ -4,7 +4,7 @@
 , makeFontsConf
 
 , ffmpeg
-, sox-with-mp3
+, sox
 , yt-dlp
 , python3Packages
 , gnumake
@@ -23,7 +23,7 @@ mkShell {
   nativeBuildInputs = [
     gnumake
     ffmpeg
-    sox-with-mp3
+    sox
     yt-dlp
     python3Packages.demucs
     python3Packages.python

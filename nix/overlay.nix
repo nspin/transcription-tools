@@ -55,10 +55,6 @@ in {
     ];
   };
 
-  sox-with-mp3 = sox.override {
-    enableLame = true;
-  };
-
   materialDesignIconicFont = callPackage ./deps/material-design-iconic-font.nix {};
 
 }
